@@ -1,25 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
+
+import { useFirebaseAuth } from 'use-firebase-auth';
+
+import Home from './pages/Home';
+import Login from './components/Login';
+import Register from './components/Register';
+
 import './App.css';
 
 function App() {
+  const { user, loading, error, signInWithProvider } = useFirebaseAuth();
+  console.log(user, loading);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        {user && (
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route component={() => <Redirect to="/" />} />
+          </Switch>
+        )}
+        {!user && (
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/signup" component={Register} />
+          </Switch>
+        )}
+      </div>
+    </Router>
   );
 }
 

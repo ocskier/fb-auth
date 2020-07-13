@@ -4,10 +4,20 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { FirebaseAuthProvider } from 'use-firebase-auth';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import { firebaseConfig } from './config';
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <FirebaseAuthProvider firebase={firebase}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </FirebaseAuthProvider>,
   document.getElementById('root')
 );
 
