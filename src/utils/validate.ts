@@ -1,14 +1,12 @@
-import React from 'react';
-
-import {isEmail} from 'validator';
+import { isEmail } from 'validator';
 
 export default {
-    checkEmail: (val) => {
-        if(!isEmail(val))
-        return 'Must be a valid email address!'
-    },
-    checkPassword: (val) => {
-        if(val.length < 8)
-        return 'Must be 8 chars long!'
-    }
-}
+  checkEmail: (val: String) => {
+    if (!isEmail(val)) return true;
+    return false;
+  },
+  checkPassword: (val: String) => {
+    if (val.length < 8) return true;
+    return false;
+  },
+};

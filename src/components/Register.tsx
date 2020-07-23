@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { TextField, Typography, Divider, Paper } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import ReplayIcon from '@material-ui/icons/Replay';
 
 import validate from '../utils/validate';
 
 import { useFirebaseAuth } from 'use-firebase-auth';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
@@ -20,6 +20,14 @@ const useStyles = makeStyles((theme) => ({
     padding: '1rem',
     backgroundColor: 'paleturquoise',
     position: 'relative',
+    borderRadius: '10px',
+  },
+  inputFields: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '2rem',
+    alignItems: 'start',
+    paddingLeft: '2rem',
   },
   replay: {
     position: 'absolute',
@@ -36,25 +44,29 @@ export default function Register() {
   const classes = useStyles();
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
-  const { checkEmail,checkPassword } = validate;
+  const { checkEmail, checkPassword } = validate;
 
   const { createUserWithEmailAndPassword } = useFirebaseAuth();
 
-  const handleRegisterEmailChange = (event) => {
+  const handleRegisterEmailChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setRegisterEmail(event.target.value);
   };
 
-  const handleRegisterPasswordChange = (event) => {
+  const handleRegisterPasswordChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setRegisterPassword(event.target.value);
   };
 
-  const handleRegisterSubmit = (e) => {
-    e.preventDefault();
+  const handleRegisterSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     createUserWithEmailAndPassword(registerEmail, registerPassword);
   };
 
   return (
-    <Paper className={classes.paper}>
+    <Paper elevation={2} className={classes.paper}>
       <form className={classes.root} noValidate autoComplete="off">
         <div>
           <Link to="/">
@@ -64,24 +76,26 @@ export default function Register() {
             Register
           </Typography>
           <Divider />
-          <TextField
-            error={checkEmail(registerEmail)}
-            id="email"
-            label="Email: "
-            variant="outlined"
-            onChange={handleRegisterEmailChange}
-            value={registerEmail}
-            helperText={checkEmail(registerEmail)}
-          />
-          <TextField
-            error={checkPassword(registerPassword)}
-            id="password"
-            label="Password: "
-            helperText={checkPassword(registerPassword)}
-            variant="outlined"
-            onChange={handleRegisterPasswordChange}
-            value={registerPassword}
-          />
+          <div className={classes.inputFields}>
+            <TextField
+              error={checkEmail(registerEmail)}
+              id="email"
+              label="Email: "
+              variant="outlined"
+              onChange={handleRegisterEmailChange}
+              value={registerEmail}
+              helperText={checkEmail(registerEmail)}
+            />
+            <TextField
+              error={checkPassword(registerPassword)}
+              id="password"
+              label="Password: "
+              helperText={checkPassword(registerPassword)}
+              variant="outlined"
+              onChange={handleRegisterPasswordChange}
+              value={registerPassword}
+            />
+          </div>
         </div>
         <button onClick={handleRegisterSubmit} className={classes.submit}>
           Submit

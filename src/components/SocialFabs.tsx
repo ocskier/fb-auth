@@ -3,9 +3,9 @@ import React from 'react';
 import clsx from 'clsx';
 
 // Material UI imports
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   button: {
     background: 'white',
     color: '#444',
@@ -53,11 +53,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SocialFabs({ signInWithProvider }) {
+function SocialFabs({ signInWithProvider }: any) {
   const classes = useStyles();
 
   return (
-    <div className={classes.socialDiv}>
+    <div>
       <div
         className={clsx(classes.socialFab, classes.button)}
         onClick={() => signInWithProvider('google')}

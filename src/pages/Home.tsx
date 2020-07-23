@@ -10,7 +10,11 @@ export default function Home() {
   return (
     <header className="App-header">
       <span onClick={signOut}>Logout</span>
-      <img src={user.photoURL ? user.photoURL : logo} className="App-logo" alt="logo" />
+      <img
+        src={user!.photoURL ? user!.photoURL : logo}
+        className="App-logo"
+        alt="logo"
+      />
       <p>Your react app code goes here!</p>
     </header>
   );
