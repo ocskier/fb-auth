@@ -5,7 +5,7 @@ import { TextField, Typography, Divider, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ReplayIcon from '@material-ui/icons/Replay';
 
-import { isEmail } from 'validator';
+import validate from '../utils/validate';
 
 import { useFirebaseAuth } from 'use-firebase-auth';
 
@@ -36,6 +36,7 @@ export default function Register() {
   const classes = useStyles();
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
+  const { checkEmail,checkPassword } = validate;
 
   const { createUserWithEmailAndPassword } = useFirebaseAuth();
 
@@ -64,20 +65,19 @@ export default function Register() {
           </Typography>
           <Divider />
           <TextField
-            error={!isEmail(registerEmail)}
+            error={checkEmail(registerEmail)}
             id="email"
             label="Email: "
             variant="outlined"
             onChange={handleRegisterEmailChange}
             value={registerEmail}
+            helperText={checkEmail(registerEmail)}
           />
           <TextField
-            error={registerPassword.length < 8}
+            error={checkPassword(registerPassword)}
             id="password"
             label="Password: "
-            helperText={
-              registerPassword.length < 8 ? 'Must be 8 chars long!' : ''
-            }
+            helperText={checkPassword(registerPassword)}
             variant="outlined"
             onChange={handleRegisterPasswordChange}
             value={registerPassword}

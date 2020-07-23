@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import SocialFabs from './SocialFabs';
@@ -6,7 +6,7 @@ import SocialFabs from './SocialFabs';
 import { TextField, Typography, Divider, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { isEmail } from 'validator';
+import validate from '../utils/validate';
 
 import { useFirebaseAuth } from 'use-firebase-auth';
 
@@ -35,6 +35,7 @@ function Login() {
   const [password, setPassword] = useState('');
 
   const classes = useStyles();
+  const { checkEmail, checkPassword } = validate;
 
   const { signInWithEmailAndPassword, signInWithProvider } = useFirebaseAuth();
 
@@ -59,7 +60,7 @@ function Login() {
           </Typography>
           <Divider />
           <TextField
-            error={!isEmail(email)}
+            error={checkEmail(email)}
             id="email"
             label="Email: "
             variant="outlined"
@@ -67,7 +68,7 @@ function Login() {
             value={email}
           />
           <TextField
-            error={password.length < 8}
+            error={checkPassword(password)}
             id="password"
             label="Password: "
             variant="outlined"
