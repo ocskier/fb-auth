@@ -18,12 +18,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   paper: {
+    minWidth: 400,
+    width: '50%',
     padding: '1rem',
     backgroundColor: 'paleturquoise',
     position: 'relative',
     borderRadius: '10px',
     marginTop: '-100px',
-    minWidth: 400,
   },
   inputFields: {
     display: 'flex',
@@ -40,6 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   submit: {
     width: 100,
     margin: '0 auto',
+    backgroundColor: 'cadetblue',
   },
 }));
 
