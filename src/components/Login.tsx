@@ -24,6 +24,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: '1rem',
     backgroundColor: 'paleturquoise',
     borderRadius: '10px',
+    marginTop: '-100px',
+    minWidth: 400,
   },
   inputFields: {
     display: 'flex',

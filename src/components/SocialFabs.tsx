@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: 'white',
     color: '#444',
     width: 'auto',
-    minWidth: '250px',
     borderRadius: '5px',
     border: 'thin solid #888',
     boxShadow: '1px 1px 1px grey',

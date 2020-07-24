@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: 'paleturquoise',
     position: 'relative',
     borderRadius: '10px',
+    marginTop: '-100px',
+    minWidth: 400,
   },
   inputFields: {
     display: 'flex',
