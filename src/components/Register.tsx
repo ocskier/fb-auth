@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { TextField, Typography, Divider, Paper } from '@material-ui/core';
+import { Button, Divider, Paper, TextField } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import ReplayIcon from '@material-ui/icons/Replay';
 
@@ -99,9 +100,9 @@ export default function Register() {
             />
           </div>
         </div>
-        <button onClick={handleRegisterSubmit} className={classes.submit}>
+        <Button onClick={handleRegisterSubmit} className={classes.submit}>
           Submit
-        </button>
+        </Button>
       </form>
     </Paper>
   );

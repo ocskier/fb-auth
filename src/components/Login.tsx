@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 import SocialFabs from './SocialFabs';
 
-import { TextField, Typography, Divider, Paper } from '@material-ui/core';
+import { Button, Divider, Paper, TextField } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import validate from '../utils/validate';
@@ -90,9 +91,9 @@ function Login() {
             />
           </div>
         </div>
-        <button onClick={handleSubmit} className={classes.submit}>
+        <Button className={classes.submit} onClick={handleSubmit}>
           Submit
-        </button>
+        </Button>
         <Divider className={classes.divider} />
         <SocialFabs signInWithProvider={signInWithProvider} />
       </form>
